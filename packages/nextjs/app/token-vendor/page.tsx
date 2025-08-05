@@ -5,16 +5,23 @@ import type { NextPage } from "next";
 import { formatEther } from "viem";
 import { useAccount } from "wagmi";
 import { AddressInput, IntegerInput } from "~~/components/scaffold-eth";
-import { useDeployedContractInfo, useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
-import { useWatchBalance } from "~~/hooks/scaffold-eth/useWatchBalance";
-import { getTokenPrice, multiplyTo1e18 } from "~~/utils/scaffold-eth/priceInWei";
+import {
+  // useDeployedContractInfo,
+  useScaffoldReadContract,
+  useScaffoldWriteContract,
+} from "~~/hooks/scaffold-eth";
+// import { useWatchBalance } from "~~/hooks/scaffold-eth/useWatchBalance";
+import {
+  // getTokenPrice,
+  multiplyTo1e18,
+} from "~~/utils/scaffold-eth/priceInWei";
 
 const TokenVendor: NextPage = () => {
   const [toAddress, setToAddress] = useState("");
   const [tokensToSend, setTokensToSend] = useState("");
-  const [tokensToBuy, setTokensToBuy] = useState<string | bigint>("");
-  const [isApproved, setIsApproved] = useState(false);
-  const [tokensToSell, setTokensToSell] = useState<string>("");
+  // const [tokensToBuy, setTokensToBuy] = useState<string | bigint>("");
+  // const [isApproved, setIsApproved] = useState(false);
+  // const [tokensToSell, setTokensToSell] = useState<string>("");
 
   const { address } = useAccount();
   const { data: yourTokenSymbol } = useScaffoldReadContract({
@@ -28,8 +35,8 @@ const TokenVendor: NextPage = () => {
     args: [address],
   });
 
-  const { data: vendorContractData } = useDeployedContractInfo({ contractName: "Vendor" });
-  const { writeContractAsync: writeVendorAsync } = useScaffoldWriteContract({ contractName: "Vendor" });
+  // const { data: vendorContractData } = useDeployedContractInfo({ contractName: "YourToken" });
+  // const { writeContractAsync: writeVendorAsync } = useScaffoldWriteContract({ contractName: "YourToken" });
   const { writeContractAsync: writeYourTokenAsync } = useScaffoldWriteContract({ contractName: "YourToken" });
 
   // const { data: vendorTokenBalance } = useScaffoldReadContract({

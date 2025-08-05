@@ -8,8 +8,8 @@ import { useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 const Events: NextPage = () => {
   // BuyTokens Events
   const { data: buyTokenEvents, isLoading: isBuyEventsLoading } = useScaffoldEventHistory({
-    contractName: "Vendor",
-    eventName: "BuyTokens",
+    contractName: "YourToken",
+    eventName: "Transfer",
   });
 
   // // SellTokens Events
@@ -51,10 +51,9 @@ const Events: NextPage = () => {
                     return (
                       <tr key={index}>
                         <td className="text-center">
-                          <Address address={event.args.buyer} />
+                          <Address address={event.args?.from} />
                         </td>
-                        <td>{formatEther(event.args?.amountOfTokens || 0n)}</td>
-                        <td>{formatEther(event.args?.amountOfETH || 0n)}</td>
+                        <td>{formatEther(event.args?.value || 0n)}</td>
                       </tr>
                     );
                   })
